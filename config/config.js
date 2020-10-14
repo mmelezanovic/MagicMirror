@@ -25,7 +25,7 @@ var config = {
 	httpsPrivateKey: "", 	// HTTPS private key path, only require when useHttps is true
 	httpsCertificate: "", 	// HTTPS Certificate path, only require when useHttps is true
 
-	language: "en",
+	language: "de",
 	timeFormat: 24,
 	units: "metric",
 	// serverOnly:  true/false/"local" ,
@@ -36,28 +36,14 @@ var config = {
 
 	modules: [
 		{
-			module: 'LeapMirrorDemo',
-			position: "bottom_center",
-			classes: "default everyone",
-			config: {
-			}
-		},
-		{
-			module: 'MagicMirrorDemo',
-			position: "top_right",
-			classes: "default everyone",
-			config: {
-			}
-		},	
-		{
 		    	module: 'MMM-Face-Reco-DNN',
 		    	config: {
 			    	// Logout 15 seconds after user was not detected any more
 			    	// If they are detected within this period, the delay will start again
-			    	logoutDelay: 15000,
+			    	logoutDelay: 10000,
 			    	// How often the recognition starts in milliseconds
 			    	// With a Raspberry Pi 3+ it works well every 2 seconds
-			    	checkInterval: 2000,
+			    	checkInterval: 3000,
 			    	// Module set used for strangers or if no user is detected
 			    	defaultClass: 'default',
 			    	// Set of modules which should be shown for every recognised user
@@ -96,67 +82,129 @@ var config = {
     			}
 		},
 		{
+			module: 'VirtualKeyboard',
+			position: 'lower_third',
+			classes: 'default everyone',
+			config: {
+			}
+		},
+		{
+			//if you change the position, the invisible button will not work properly
+			module: 'ClockButton',
+			position: 'top_left',
+			classes: 'default everyone',
+			config: {
+			}
+		},
+		{
+			module: 'CalendarButton',
+			position: 'bottom_left',
+			classes: 'default everyone',
+			config: {
+			}
+		},
+		{
+		    module: 'MMM-Carousel',
+		    config: {
+		        ignoreModules: [],
+		        mode: 'positional',
+		        top_left: {enabled: true, ignoreModules: ['ClockButton']},
+		        bottom_left: {enabled: true, ignoreModules: ['CalendarButton']}
+		    }
+		},
+		{
+			module: "LeapMirrorDemo",
+			position: "bottom_right",
+			classes: "default everyone",
+			config: {
+			}
+		},
+		{
+			module: 'MagicMirrorDemo',
+			position: "bottom_right",
+			classes: "Luciana",
+			config: {
+			}
+		},
+		{
 			module: "alert",
 			classes: "default everyone"
 		},
-		{
-			module: "updatenotification",
-			position: "top_bar",
-			classes: "default everyone"
-		},
+		//{
+		//	module: "updatenotification",
+		//	position: "top_bar",
+		//	classes: "default everyone"
+		//},
 		{
 			module: "clock",
 			position: "top_left",
-			classes: "ma"
+			classes: "default everyone"
+		},
+		{
+			module: 'MMM-germanwordclock',
+			position: 'top_left',
+			classes: "Maisa"
 		},
 		{
 			module: "calendar",
-			header: "US Holidays",
-			position: "top_left",
+			header: "Feiertage",
+			colored: true,
+			coloredSymbolOnly: true,
+			color: '#efefef',
+			position: "bottom_left",
 			classes: "default everyone",
 			config: {
 				calendars: [
 					{
 						symbol: "calendar-check",
-						url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"					}
+						url: "https://www.ferienwiki.ch/exports/feiertage/2020/ch/st-gallen"	//ex. webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics			
+					}
 				]
 			}
 		},
 		{
-			module: "compliments",
-			position: "lower_third",
-			classes: "ma"
-		},
-		{
-			module: "currentweather",
-			position: "top_right",
+			module: "calendar",
+			header: "Ferien",
+			colored: true,
+			coloredSymbolOnly: true,
+			color: '#efefef',
+			position: "bottom_left",
 			classes: "default everyone",
 			config: {
-				location: "New York",
-				locationID: "", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-				appid: "YOUR_OPENWEATHER_API_KEY"
+				calendars: [
+					{
+						symbol: "calendar-check",
+						url: "https://www.ferienwiki.ch/exports/ferien/2020/ch/st-gallen"
+					}
+				]
 			}
 		},
 		{
-			module: "weatherforecast",
-			position: "top_right",
-			header: "Weather Forecast",
-			classes: "ma",
+			module: 'MMM-SwissCommute',
+			position: 'bottom_right',
+			header: 'Train Connections',
+			classes: "default everyone",
 			config: {
-				location: "New York",
-				locationID: "5128581", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-				appid: "YOUR_OPENWEATHER_API_KEY"
+				from: 'Rapperswil', // Start train station
+				to: 'Zürich HB', // Destination station
+				maximumEntries: 4, // Max departures displayed
+				minWalkingTime: 10 // Minimum time to get to the station
 			}
+		},
+		{
+			module: "compliments",
+			position: "bottom_bar",
+			classes: "Maisa"
 		},
 		{
 			module: "newsfeed",
-			position: "bottom_bar",
+			position: "top_center",
 			classes: "default everyone",
 			config: {
 				feeds: [
 					{
-						title: "New York Times",
-						url: "http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+						title: "NZZ",
+						url: "https://www.nzz.ch/startseite.rss"
 					}
 				],
 				showSourceTitle: true,
@@ -166,13 +214,37 @@ var config = {
 			}
 		},
 		{
-			module: "MMM-EyeCandy",
-			position: "top_center",
+			module: "currentweather",
+			position: "top_right",
 			classes: "default everyone",
 			config: {
-				maxWidth: "75%",       // Sizes the images. Retains aspect ratio.
+				appid: '25277edb2479d229e550f8742d9ad7aa',
+				locationID: '2659099',
+				location: 'Rapperswil, CH',
+			}
+		},
+		{
+			module: "weatherforecast",
+			position: "top_right",
+			classes: "default everyone",
+			header: "Vorhersage" ,
+			config: {
+				// See 'Configuration options' for more information.
+				appid: '25277edb2479d229e550f8742d9ad7aa',
+				locationID: '2659099',
+				location: 'Rapperswil, CH',
+				maxNumberOfDays: 5,
+				forecastEndpoint: 'forecast'
+			}
+		},
+		{
+			module: "MMM-EyeCandy",
+			position: "upper_third",
+			classes: "default everyone",
+			config: {
+				maxWidth: "20%",       // Sizes the images. Retains aspect ratio.
 				style: '16',            // Style number or use ownImagePath to override style
-				ownImagePath: '',      // ex: 'modules/MMM-EyeCandy/pix/YOUR_PICTURE_NAME.jpg', or internet url to image
+				ownImagePath: 'modules/MMM-EyeCandy/pix/ostlogo.png', //'http://rammb.cira.colostate.edu/ramsdis/online/images/latest_hi_res/himawari-8/full_disk_ahi_true_color.jpg',      // ex: 'modules/MMM-EyeCandy/pix/YOUR_PICTURE_NAME.jpg', or internet url to image
 			}
 		},
 	]
