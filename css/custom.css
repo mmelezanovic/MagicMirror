@@ -1,0 +1,20 @@
+html {
+  cursor: default;
+}
+
+#leap_motion_css {
+  z-index: 1001;
+}
+
+.ClockButton {
+  position: absolute;
+  z-index: 1000;
+}
+
+.CalendarButton {
+  position: absolute;
+}
+
+.calendar {
+  bottom: 150px;
+}
