@@ -3,7 +3,6 @@ html {
 }
 
 #leap_motion_css {
-  z-index: 1001;
 }
 
 .ClockButton {
@@ -13,8 +12,13 @@ html {
 
 .CalendarButton {
   position: absolute;
+  z-index: 1000;
 }
 
 .calendar {
   bottom: 150px;
+}
+
+.LeapMirrorDemo {
+  z-index: 1001;
 }

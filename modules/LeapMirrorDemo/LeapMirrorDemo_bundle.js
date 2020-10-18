@@ -4150,9 +4150,9 @@
 					(this.elm.style.left = t + "px"), (this.elm.style.top = e + "px");
 				}),
 				(this.activeEffect = function () {
-					this.elm.style.backgroundColor = this.config.activeColor;
+					this.elm.style.backgroundImage = "url('modules/LeapMirrorDemo/hand.png')";
 					var t = function () {
-						this.elm.style.backgroundColor = this.config.mainColor;
+						this.elm.style.backgroundImage = "url('modules/LeapMirrorDemo/hand.png')";
 					};
 					setTimeout(t.bind(this), 500);
 				}),
@@ -4175,11 +4175,17 @@
 			};
 			(this.elm = document.createElement("div")),
 				(this.elm.style.position = "fixed"),
-				(this.elm.style.opacity = 0.7),
-				(this.elm.style.width = this.config.cursorSize + "px"),
-				(this.elm.style.height = this.config.cursorSize + "px"),
-				(this.elm.style.borderRadius = this.config.cursorSize / 2 + "px"),
-				(this.elm.style.backgroundColor = this.config.mainColor),
+				//(this.elm.style.opacity = 0.7),
+				//(this.elm.style.width = this.config.cursorSize + "px"),
+				//(this.elm.style.height = this.config.cursorSize + "px"),
+				//(this.elm.style.borderRadius = this.config.cursorSize / 2 + "px"),
+				//(this.elm.style.backgroundColor = this.config.mainColor),
+				(this.elm.style.display = "block"),
+				(this.elm.style.backgroundColor = "blue"),
+				(this.elm.style.backgroundImage = "url('modules/LeapMirrorDemo/hand.png')"), //Icons made by freepix (https://www.flaticon.com/authors/freepik)
+				(this.elm.style.width = "20px"),
+				(this.elm.style.height = "20px"),
+				(this.elm.style.zIndex = "1001"),
 				(this.elm.id = "leap_motion_css"),
 				document.body.appendChild(this.elm);
 			var e = {

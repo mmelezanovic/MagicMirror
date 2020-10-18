@@ -82,13 +82,6 @@ var config = {
     			}
 		},
 		{
-			module: 'VirtualKeyboard',
-			position: 'lower_third',
-			classes: 'default everyone',
-			config: {
-			}
-		},
-		{
 			//if you change the position, the invisible button will not work properly
 			module: 'ClockButton',
 			position: 'top_left',
@@ -119,13 +112,13 @@ var config = {
 			config: {
 			}
 		},
-		{
-			module: 'MagicMirrorDemo',
-			position: "bottom_right",
-			classes: "Luciana",
-			config: {
-			}
-		},
+//		{
+//			module: 'MagicMirrorDemo',
+//			position: "bottom_right",
+//			classes: "default everyone",
+//			config: {
+//			}
+//		},
 		{
 			module: "alert",
 			classes: "default everyone"
@@ -143,7 +136,7 @@ var config = {
 		{
 			module: 'MMM-germanwordclock',
 			position: 'top_left',
-			classes: "Maisa"
+			classes: "default everyone"
 		},
 		{
 			module: "calendar",
@@ -194,7 +187,7 @@ var config = {
 		{
 			module: "compliments",
 			position: "bottom_bar",
-			classes: "Maisa"
+			classes: "default everyone"
 		},
 		{
 			module: "newsfeed",
@@ -218,7 +211,7 @@ var config = {
 			position: "top_right",
 			classes: "default everyone",
 			config: {
-				appid: '25277edb2479d229e550f8742d9ad7aa',
+				appid: '',
 				locationID: '2659099',
 				location: 'Rapperswil, CH',
 			}
@@ -230,7 +223,7 @@ var config = {
 			header: "Vorhersage" ,
 			config: {
 				// See 'Configuration options' for more information.
-				appid: '25277edb2479d229e550f8742d9ad7aa',
+				appid: '',
 				locationID: '2659099',
 				location: 'Rapperswil, CH',
 				maxNumberOfDays: 5,
