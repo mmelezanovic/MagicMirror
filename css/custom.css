@@ -1,8 +1,11 @@
-html {
-  cursor: default;
-}
-
 #leap_motion_css {
+  display: block;
+  background-image: url("../modules/LeapMirrorDemo/icons/hand.png"); /*Icons made by freepix (https://www.flaticon.com/authors/freepik) */
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  z-index: 1001;
 }
 
 .ClockButton {
@@ -17,8 +20,4 @@ html {
 
 .calendar {
   bottom: 150px;
-}
-
-.LeapMirrorDemo {
-  z-index: 1001;
 }

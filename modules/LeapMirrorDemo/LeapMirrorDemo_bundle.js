@@ -4150,9 +4150,9 @@
 					(this.elm.style.left = t + "px"), (this.elm.style.top = e + "px");
 				}),
 				(this.activeEffect = function () {
-					this.elm.style.backgroundImage = "url('modules/LeapMirrorDemo/hand.png')";
+					this.elm.style.backgroundImage = "url('../modules/LeapMirrorDemo/icons/touch_icon.png')"; // Icons made by freepix (https://www.flaticon.com/authors/freepik)
 					var t = function () {
-						this.elm.style.backgroundImage = "url('modules/LeapMirrorDemo/hand.png')";
+						this.elm.style.backgroundImage = "url('../modules/LeapMirrorDemo/icons/hand.png')"; // Icons made by freepix (https://www.flaticon.com/authors/freepik)
 					};
 					setTimeout(t.bind(this), 500);
 				}),
@@ -4180,12 +4180,6 @@
 				//(this.elm.style.height = this.config.cursorSize + "px"),
 				//(this.elm.style.borderRadius = this.config.cursorSize / 2 + "px"),
 				//(this.elm.style.backgroundColor = this.config.mainColor),
-				(this.elm.style.display = "block"),
-				(this.elm.style.backgroundColor = "blue"),
-				(this.elm.style.backgroundImage = "url('modules/LeapMirrorDemo/hand.png')"), //Icons made by freepix (https://www.flaticon.com/authors/freepik)
-				(this.elm.style.width = "20px"),
-				(this.elm.style.height = "20px"),
-				(this.elm.style.zIndex = "1001"),
 				(this.elm.id = "leap_motion_css"),
 				document.body.appendChild(this.elm);
 			var e = {

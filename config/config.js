@@ -173,15 +173,75 @@ var config = {
 			}
 		},
 		{
+			module: "MMM-CalendarWeek",
+			position: "bottom_left",
+			classes: "default everyone",
+			config: {
+				colored: false,
+				coloredSymbolOnly: false,
+				calendars: [
+					{
+						url: 'http://localhost:8080/modules/MMM-CalendarWeek/calendar/example@gmail.com.ics',
+						symbol: 'calendar',
+					},
+				],
+				maximumNumberOfDays: 7
+			}
+		},
+		{
+		    disabled: false,
+		    module: 'MMM-WeatherOrNot',
+		    position: 'top_right',
+		    classes: "default everyone",
+		    config: {
+		      location: "rapperswil-jona",                // See instructions
+		      locationCode: "47d238d82",              // See instructions
+		      languages: "de",                          // See Languages list
+		      tempUnits: "C",                           // F or C
+		      font: "Tahoma",                           // See Font list
+		      textColor: "#ffffff",                     // Hex color codes.
+		      htColor: "#ffffff",                       // high temp color. Hex color codes.
+		      ltColor: "#c2215a",                       // low temp color. Hex color codes.
+		      sunColor: "#febc2f",                      // Hex color codes.
+		      moonColor: "#dfdede",                     // Hex color codes.
+		      cloudColor: "#dfdede",                    // Hex color codes.
+		      cloudFill: "#c2215a",                     // Hex color codes.
+		      rainColor: "#93bffe",                     // Hex color codes.
+		      snowColor: "#dfdede",                     // Hex color codes.
+		      height: "600px",                          // module is responsive to changes
+		      width: "400px",                          // module is responsive to changes
+		      label: "RAPPERSWIL-JONA",                 // Location seems logical . .
+		      label2: "WETTER",                  	  // . . . or anything you like
+		      days: "7",                                // 3, 5 or 7
+		      theme: "dark",                            // See Themes list *** theme overrides bgColor. ***
+		      bgColor: "#000000",                       // theme overrides bgColor.
+		      icons: "Climacons Animated",              // Iconvault, Climacons or Climacons Animated
+		      animationSpeed: 3000,
+		      updateInterval: 10 * 60 * 1000
+		     }
+		},
+		{
 			module: 'MMM-SwissCommute',
-			position: 'bottom_right',
+			position: 'top_right',
 			header: 'Train Connections',
 			classes: "default everyone",
 			config: {
 				from: 'Rapperswil', // Start train station
 				to: 'Zürich HB', // Destination station
-				maximumEntries: 4, // Max departures displayed
+				maximumEntries: 8, // Max departures displayed
 				minWalkingTime: 10 // Minimum time to get to the station
+			}
+		},
+		{
+			module: "MMM-DigClock",
+			position: "top_left",	// This can be any of the regions.
+			classes: "default everyone",
+			config: {
+				showDate: true,
+				showWeek: false,
+				showSeconds: false,
+				dateFormat: "dddd, LL",
+				timezone: "Europe/Berlin"
 			}
 		},
 		{
@@ -204,30 +264,6 @@ var config = {
 				showPublishDate: true,
 				broadcastNewsFeeds: true,
 				broadcastNewsUpdates: true
-			}
-		},
-		{
-			module: "currentweather",
-			position: "top_right",
-			classes: "default everyone",
-			config: {
-				appid: '',
-				locationID: '2659099',
-				location: 'Rapperswil, CH',
-			}
-		},
-		{
-			module: "weatherforecast",
-			position: "top_right",
-			classes: "default everyone",
-			header: "Vorhersage" ,
-			config: {
-				// See 'Configuration options' for more information.
-				appid: '',
-				locationID: '2659099',
-				location: 'Rapperswil, CH',
-				maxNumberOfDays: 5,
-				forecastEndpoint: 'forecast'
 			}
 		},
 		{

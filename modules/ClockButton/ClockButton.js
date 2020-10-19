@@ -19,7 +19,9 @@ Module.register("ClockButton", {
 			this.sendNotification("CAROUSEL_MODULE_TRANSITION", {});
 			if (button.style.height === "200px") {
 				button.style.height = "500px";
-			} else {
+			} else if (button.style.height === "500px") {
+				button.style.height = "250px";
+			} else if (button.style.height === "250px") {
 				button.style.height = "200px";
 			}
 		};
