@@ -97,17 +97,33 @@ var config = {
 			}
 		},
 		{
+			module: 'WeatherButton',
+			position: 'top_right',
+			classes: 'default everyone',
+			config: {
+			}
+		},
+		{
+			module: 'ConnectionsButton',
+			position: 'bottom_right',
+			classes: 'default everyone',
+			config: {
+			}
+		},
+		{
 		    module: 'MMM-Carousel',
 		    config: {
 		        ignoreModules: [],
 		        mode: 'positional',
-		        top_left: {enabled: true, ignoreModules: ['ClockButton']},
-		        bottom_left: {enabled: true, ignoreModules: ['CalendarButton']}
+		        top_left: {enabled: true, ignoreModules: ['ClockButton', 'calendar']},
+		        bottom_left: {enabled: true, ignoreModules: ['CalendarButton']},
+		        top_right: {enabled: true, ignoreModules: ['WeatherButton']},
+		        bottom_right: {enabled: true, ignoreModules: ['ConnectionsButton']}
 		    }
 		},
 		{
 			module: "LeapMirrorDemo",
-			position: "bottom_right",
+			position: "top_center",
 			classes: "default everyone",
 			config: {
 			}
@@ -139,12 +155,24 @@ var config = {
 			classes: "default everyone"
 		},
 		{
+			module: "MMM-DigClock",
+			position: "top_left",	// This can be any of the regions.
+			classes: "default everyone",
+			config: {
+				showDate: true,
+				showWeek: false,
+				showSeconds: false,
+				dateFormat: "dddd, LL",
+				timezone: "Europe/Berlin"
+			}
+		},
+		{
 			module: "calendar",
 			header: "Feiertage",
 			colored: true,
 			coloredSymbolOnly: true,
 			color: '#efefef',
-			position: "bottom_left",
+			position: "top_left",
 			classes: "default everyone",
 			config: {
 				calendars: [
@@ -161,7 +189,7 @@ var config = {
 			colored: true,
 			coloredSymbolOnly: true,
 			color: '#efefef',
-			position: "bottom_left",
+			position: "top_left",
 			classes: "default everyone",
 			config: {
 				calendars: [
@@ -172,21 +200,42 @@ var config = {
 				]
 			}
 		},
+//		{
+//			module: "MMM-CalendarWeek",
+//			position: "bottom_left",
+//			classes: "default everyone",
+//			config: {
+//				colored: false,
+//				coloredSymbolOnly: false,
+//				hideEmptyDays: true,
+//				wrapEvents: true,
+//				tableClass: 'xsmall',
+//				calendars: [
+//					{
+//						url: 'http://localhost:8080/modules/MMM-CalendarWeek/calendar/example@gmail.com.ics',
+//						symbol: 'calendar',
+//					},
+//				],
+//				maximumNumberOfDays: 9
+//			}
+//		},
 		{
-			module: "MMM-CalendarWeek",
-			position: "bottom_left",
+			module: "calendar",
+			position: "bottom_left",	// This can be any of the regions. Best results in left or right regions.
 			classes: "default everyone",
 			config: {
 				colored: false,
 				coloredSymbolOnly: false,
+				timeFormat: "dateheaders",
+				getRelative: 0,
 				calendars: [
 					{
 						url: 'http://localhost:8080/modules/MMM-CalendarWeek/calendar/example@gmail.com.ics',
 						symbol: 'calendar',
 					},
 				],
-				maximumNumberOfDays: 7
 			}
+
 		},
 		{
 		    disabled: false,
@@ -208,7 +257,39 @@ var config = {
 		      cloudFill: "#c2215a",                     // Hex color codes.
 		      rainColor: "#93bffe",                     // Hex color codes.
 		      snowColor: "#dfdede",                     // Hex color codes.
-		      height: "600px",                          // module is responsive to changes
+		      height: "1000px",                          // module is responsive to changes
+		      width: "200px",                          // module is responsive to changes
+		      label: "RAPPERSWIL-JONA",                 // Location seems logical . .
+		      label2: "WETTER",                  	  // . . . or anything you like
+		      days: "7",                                // 3, 5 or 7
+		      theme: "dark",                            // See Themes list *** theme overrides bgColor. ***
+		      bgColor: "#000000",                       // theme overrides bgColor.
+		      icons: "Climacons Animated",              // Iconvault, Climacons or Climacons Animated
+		      animationSpeed: 3000,
+		      updateInterval: 10 * 60 * 1000
+		     }
+		},
+				{
+		    disabled: false,
+		    module: 'MMM-WeatherOrNot',
+		    position: 'top_right',
+		    classes: "default everyone",
+		    config: {
+		      location: "rapperswil-jona",                // See instructions
+		      locationCode: "47d238d82",              // See instructions
+		      languages: "de",                          // See Languages list
+		      tempUnits: "C",                           // F or C
+		      font: "Tahoma",                           // See Font list
+		      textColor: "#ffffff",                     // Hex color codes.
+		      htColor: "#ffffff",                       // high temp color. Hex color codes.
+		      ltColor: "#c2215a",                       // low temp color. Hex color codes.
+		      sunColor: "#febc2f",                      // Hex color codes.
+		      moonColor: "#dfdede",                     // Hex color codes.
+		      cloudColor: "#dfdede",                    // Hex color codes.
+		      cloudFill: "#c2215a",                     // Hex color codes.
+		      rainColor: "#93bffe",                     // Hex color codes.
+		      snowColor: "#dfdede",                     // Hex color codes.
+		      height: "300px",                          // module is responsive to changes
 		      width: "400px",                          // module is responsive to changes
 		      label: "RAPPERSWIL-JONA",                 // Location seems logical . .
 		      label2: "WETTER",                  	  // . . . or anything you like
@@ -222,8 +303,8 @@ var config = {
 		},
 		{
 			module: 'MMM-SwissCommute',
-			position: 'top_right',
-			header: 'Train Connections',
+			position: 'bottom_right',
+			header: 'Zugverbindungen Rapperswil - Zürich HB',
 			classes: "default everyone",
 			config: {
 				from: 'Rapperswil', // Start train station
@@ -233,16 +314,17 @@ var config = {
 			}
 		},
 		{
-			module: "MMM-DigClock",
-			position: "top_left",	// This can be any of the regions.
-			classes: "default everyone",
-			config: {
-				showDate: true,
-				showWeek: false,
-				showSeconds: false,
-				dateFormat: "dddd, LL",
-				timezone: "Europe/Berlin"
-			}
+		    module: 'MMM-Canteen',
+		    position: 'bottom_right',
+		    classes: 'default everyone',
+		    config: {
+			canteenName: 'Mensa OST Rapperswil-Jona',
+			updateInterval: 600000,     
+			canteen: 742,                        
+			status: "employees",               
+			truncate: 100,                                      
+			switchTime: "23:50"                
+		    }
 		},
 		{
 			module: "compliments",

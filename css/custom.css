@@ -18,6 +18,25 @@
   z-index: 1000;
 }
 
+.WeatherButton {
+  position: absolute;
+  z-index: 1000;
+}
+
+.ConnectionsButton {
+  position: absolute;
+  z-index: 1000;
+}
+
 .calendar {
   bottom: 150px;
+}
+
+.MMM-EyeCandy {
+  position: fixed;
+  width: 100%;
+}
+
+.MMM-CalendarWeek {
+  width: 0%;
 }

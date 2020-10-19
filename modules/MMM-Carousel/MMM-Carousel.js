@@ -23,44 +23,43 @@
         },
         
 	returnedModules: [],
+	
+	getModules: function (){
+		
+	},
+	
+	transitionOnNotification: function (notification, modules){
+		
+	},
 
         notificationReceived: function (notification) {
             var positions = ['top_bar', 'bottom_bar', 'top_left', 'bottom_left', 'top_center', 'bottom_center', 'top_right', 'bottom_right', 'upper_third', 'middle_center', 'lower_third'];
             if (notification === 'DOM_OBJECTS_CREATED') {
-            	console.log('----------notification DOM OBJECTS created received');
                 // Initially, all modules are hidden except the first and any ignored modules
                 // We start by getting a list of all of the modules in the transition cycle
                 if ((this.config.mode === 'global') || (this.config.mode === 'slides')) {
                     this.setUpTransitionTimers(null);
                 } else {
-                    //for (position = 0; position < positions.length; position += 1) {
-                        //if (this.config[positions[position]].enabled === true) {
-                        // change this
-                     
-                        //}
-                    
                     if (this.config['top_left'].enabled === true){
-                       console.log('---------Carousel setupTransitionTimers function before');
                        this.returnedModules = this.setUpTransitionTimers('top_left');
                     }
                     
                      if (this.config['bottom_left'].enabled === true){
-                       console.log('---------Carousel setupTransitionTimers function before');
                        this.returnedModulesBL = this.setUpTransitionTimers('bottom_left');
                     }
                     
                      if (this.config['bottom_right'].enabled === true){
-                       console.log('---------Carousel setupTransitionTimers function before');
                        this.returnedModulesBR = this.setUpTransitionTimers('bottom_right');
+                    }
+                    
+                    if(this.config['top_right'].enabled === true){
+                    	this.returnedModulesTR = this.setUpTransitionTimers('top_right');
                     }
                 }
             }
             
             if (notification === "CAROUSEL_MODULE_TRANSITION") {
             	if (this.config['top_left'].enabled === true){
-                    console.log('---------Carousel notification passed through');
-                     //var modules = this.getModules('top_left');
-                     console.log(this.returnedModules);
 		      var transition = this.moduleTransition.bind(this.returnedModules);
 		      transition();
                }
@@ -68,9 +67,6 @@
 	    
 	    if (notification === "CAROUSEL_MODULE_TRANSITION_CALENDAR") {
             	if (this.config['bottom_left'].enabled === true){
-                    console.log('---------Carousel notification passed through');
-                     //var modules = this.getModules('bottom_left');
-                     console.log(this.returnedModulesBL);
 		      var transition = this.moduleTransition.bind(this.returnedModulesBL);
 		      transition();
                }
@@ -78,10 +74,14 @@
 	    
 	    if (notification === "CAROUSEL_MODULE_TRANSITION_CONNECTIONS") {
             	if (this.config['bottom_right'].enabled === true){
-                    console.log('---------Carousel notification passed through');
-                     //var modules = this.getModules('bottom_right');
-                     console.log(this.returnedModulesBR);
 		      var transition = this.moduleTransition.bind(this.returnedModulesBR);
+		      transition();
+               }
+	    }
+	    
+	    if (notification === "CAROUSEL_MODULE_TRANSITION_WEATHER"){
+	    	if (this.config['top_right'].enabled === true){
+		      var transition = this.moduleTransition.bind(this.returnedModulesTR);
 		      transition();
                }
 	    }
@@ -104,21 +104,10 @@
             this.moduleTransition.call(modules);
             // We set a timer to cause the page transitions
             //this.transition = setInterval(this.moduleTransition.bind(modules), timer);
-            //console.log('---------Carousel notification passed through');
 	    this.moduleTransition.bind(modules);
-	    console.log(modules);
 	    return modules;
         },
-        
-        getModules: function (positionIndex) {
-            var modules = MM.getModules().exceptModule(this).filter(function (module) {
-                if (positionIndex === null) {
-                    return this.config.ignoreModules.indexOf(module.name) === -1;
-                }
-                return ((this.config[positionIndex].ignoreModules.indexOf(module.name) === -1) && (module.data.position === positionIndex));
-            }, this);
-            return modules;
-        },
+       
 
         moduleTransition: function () {
             var i, resetCurrentIndex = this.length;
@@ -127,7 +116,6 @@
             }
             // Update the current index
             this.currentIndex += 1;
-            console.log('---------- current index is:' + this.currentIndex);
             if (this.currentIndex >= resetCurrentIndex) {
                 this.currentIndex = 0;
             }
