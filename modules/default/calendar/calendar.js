@@ -460,66 +460,29 @@ Module.register("calendar", {
 	 */
 	createEventList: function () {
 		var events = [];
-		var today = moment().startOf("day");
-		var now = new Date();
-		var future = moment().startOf("day").add(this.config.maximumNumberOfDays, "days").toDate();
-		for (var c in this.calendarData) {
-			var calendar = this.calendarData[c];
-			for (var e in calendar) {
-				var event = JSON.parse(JSON.stringify(calendar[e])); // clone object
-				if (event.endDate < now) {
-					continue;
-				}
-				if (this.config.hidePrivate) {
-					if (event.class === "PRIVATE") {
-						// do not add the current event, skip it
-						continue;
-					}
-				}
-				if (this.config.hideOngoing) {
-					if (event.startDate < now) {
-						continue;
-					}
-				}
-				if (this.listContainsEvent(events, event)) {
-					continue;
-				}
-				event.url = c;
-				event.today = event.startDate >= today && event.startDate < today + 24 * 60 * 60 * 1000;
-
-				/* if sliceMultiDayEvents is set to true, multiday events (events exceeding at least one midnight) are sliced into days,
-				 * otherwise, esp. in dateheaders mode it is not clear how long these events are.
-				 */
-				var maxCount = Math.ceil((event.endDate - 1 - moment(event.startDate, "x").endOf("day").format("x")) / (1000 * 60 * 60 * 24)) + 1;
-				if (this.config.sliceMultiDayEvents && maxCount > 1) {
-					var splitEvents = [];
-					var midnight = moment(event.startDate, "x").clone().startOf("day").add(1, "day").format("x");
-					var count = 1;
-					while (event.endDate > midnight) {
-						var thisEvent = JSON.parse(JSON.stringify(event)); // clone object
-						thisEvent.today = thisEvent.startDate >= today && thisEvent.startDate < today + 24 * 60 * 60 * 1000;
-						thisEvent.endDate = midnight;
-						thisEvent.title += " (" + count + "/" + maxCount + ")";
-						splitEvents.push(thisEvent);
-
-						event.startDate = midnight;
-						count += 1;
-						midnight = moment(midnight, "x").add(1, "day").format("x"); // next day
-					}
-					// Last day
-					event.title += " (" + count + "/" + maxCount + ")";
-					splitEvents.push(event);
-
-					for (event of splitEvents) {
-						if (event.endDate > now && event.endDate <= future) {
+		var someDate = new Date();
+				var numberOfDaysToAdd = 6;
+				someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+				var today = moment(someDate).startOf("day");
+			//var today = moment().startOf("day");
+				for (var c in this.calendarData) {
+					var calendar = this.calendarData[c];
+					for (var e in calendar) {
+						var event = calendar[e];
+				                 // if event happens further away than x number of days (6 in this sample)
+						if(event.startDate>= today) { 
+							if(this.config.hidePrivate) {
+								if(event.class === "PRIVATE") {
+									  // do not add the current event, skip it
+									  continue;
+								}
+							}
+							event.url = c;
+							event.today = event.startDate >= today && event.startDate < (today + 24 * 60 * 60 * 1000);
 							events.push(event);
 						}
 					}
-				} else {
-					events.push(event);
 				}
-			}
-		}
 
 		events.sort(function (a, b) {
 			return a.startDate - b.startDate;
