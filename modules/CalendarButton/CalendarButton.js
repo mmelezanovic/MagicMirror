@@ -11,7 +11,7 @@ Module.register("CalendarButton", {
 		var wrapper = document.createElement("div");
 		var button = document.createElement("a");
 		button.style.width = "300px";
-		button.style.height = "100px";
+		button.style.height = "300px";
 		button.style.display = "block";
 		button.style.backgroundColor = "rgba(0, 0, 0, 0.0)";
 		//button.style.Position = "fixed",

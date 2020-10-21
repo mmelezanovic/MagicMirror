@@ -1,3 +1,7 @@
+html {
+  cursor: default;
+}
+
 #leap_motion_css {
   display: block;
   background-image: url("../modules/LeapMirrorDemo/icons/hand.png"); /*Icons made by freepix (https://www.flaticon.com/authors/freepik) */
@@ -16,6 +20,7 @@
 .CalendarButton {
   position: absolute;
   z-index: 1000;
+  bottom: 0;
 }
 
 .WeatherButton {
@@ -29,12 +34,13 @@
 }
 
 .calendar {
-  bottom: 150px;
+  /*bottom: 150px;*/
 }
 
 .MMM-EyeCandy {
-  position: fixed;
+  position: absolute;
   width: 100%;
+  margin-top: 50px;
 }
 
 .MMM-CalendarWeek {

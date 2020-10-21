@@ -17,10 +17,17 @@ Module.register("ClockButton", {
 		button.onclick = () => {
 			console.log("--------------Clicked");
 			this.sendNotification("CAROUSEL_MODULE_TRANSITION", {});
+			var modules = MM.getModules()
+				.exceptModule(this)
+				.filter(function (module) {
+					return module.name === "calendar" && module.data.position === "top_left";
+				}, this);
 			if (button.style.height === "200px") {
 				button.style.height = "500px";
+				modules.forEach((module) => module.hide(0));
 			} else if (button.style.height === "500px") {
 				button.style.height = "250px";
+				modules.forEach((module) => module.show(1500));
 			} else if (button.style.height === "250px") {
 				button.style.height = "200px";
 			}

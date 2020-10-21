@@ -115,7 +115,7 @@ var config = {
 		    config: {
 		        ignoreModules: [],
 		        mode: 'positional',
-		        top_left: {enabled: true, ignoreModules: ['ClockButton', 'calendar']},
+		        top_left: {enabled: true, ignoreModules: ['ClockButton', 'calendar', 'SkippedCalendar']},
 		        bottom_left: {enabled: true, ignoreModules: ['CalendarButton']},
 		        top_right: {enabled: true, ignoreModules: ['WeatherButton']},
 		        bottom_right: {enabled: true, ignoreModules: ['ConnectionsButton']}
@@ -200,6 +200,45 @@ var config = {
 				]
 			}
 		},
+		{
+			module: "SkippedCalendar",
+			position: "bottom_left",	// This can be any of the regions. Best results in left or right regions.
+			classes: "default everyone",
+			config: {
+				colored: false,
+				coloredSymbolOnly: false,
+				timeFormat: "dateheaders",
+				getRelative: 0,
+				numberOfDaysToAdd: 7,
+				calendars: [
+					{
+						url: 'http://localhost:8080/modules/SkippedCalendar/calendar/example@gmail.com.ics',
+						symbol: 'calendar',
+					},
+				],
+			}
+
+		},
+		{
+			module: "SkippedCalendar",
+			position: "bottom_left",	// This can be any of the regions. Best results in left or right regions.
+			classes: "default everyone",
+			config: {
+				colored: false,
+				coloredSymbolOnly: false,
+				timeFormat: "dateheaders",
+				getRelative: 0,
+				numberOfDaysToSkip: 7,
+				numberOfDaysToAdd: 7,
+				calendars: [
+					{
+						url: 'http://localhost:8080/modules/SkippedCalendar/calendar/example@gmail.com.ics',
+						symbol: 'calendar',
+					},
+				],
+			}
+
+		},
 //		{
 //			module: "MMM-CalendarWeek",
 //			position: "bottom_left",
@@ -220,24 +259,6 @@ var config = {
 //			}
 //		},
 		{
-			module: "calendar",
-			position: "bottom_left",	// This can be any of the regions. Best results in left or right regions.
-			classes: "default everyone",
-			config: {
-				colored: false,
-				coloredSymbolOnly: false,
-				timeFormat: "dateheaders",
-				getRelative: 0,
-				calendars: [
-					{
-						url: 'http://localhost:8080/modules/MMM-CalendarWeek/calendar/example@gmail.com.ics',
-						symbol: 'calendar',
-					},
-				],
-			}
-
-		},
-		{
 		    disabled: false,
 		    module: 'MMM-WeatherOrNot',
 		    position: 'top_right',
@@ -257,7 +278,7 @@ var config = {
 		      cloudFill: "#c2215a",                     // Hex color codes.
 		      rainColor: "#93bffe",                     // Hex color codes.
 		      snowColor: "#dfdede",                     // Hex color codes.
-		      height: "1000px",                          // module is responsive to changes
+		      height: "600px",                          // module is responsive to changes
 		      width: "200px",                          // module is responsive to changes
 		      label: "RAPPERSWIL-JONA",                 // Location seems logical . .
 		      label2: "WETTER",                  	  // . . . or anything you like
