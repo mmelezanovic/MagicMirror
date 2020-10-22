@@ -348,7 +348,7 @@ var config = {
 		    }
 		},
 		{
-			module: "compliments",
+			module: "LoggedInUser",
 			position: "bottom_bar",
 			classes: "default everyone"
 		},
@@ -371,7 +371,7 @@ var config = {
 		},
 		{
 			module: "MMM-EyeCandy",
-			position: "upper_third",
+			position: "middle_center",
 			classes: "default everyone",
 			config: {
 				maxWidth: "20%",       // Sizes the images. Retains aspect ratio.
